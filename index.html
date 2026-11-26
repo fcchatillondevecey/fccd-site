@@ -624,7 +624,7 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
 /* ===== Équipes avec photo : titre lisible sur la photo ===== */
 .tcard .tphoto.has{background-size:cover;background-position:center 18%;background-repeat:no-repeat}
 .tphoto.has,.tcard .tphoto.has{grid-template-rows:auto auto auto;align-content:end;row-gap:2px;padding:0 14px 14px}
-.tphoto.has .tcat{grid-row:1;align-self:end;font-size:clamp(1.5rem,2vw,1.9rem)}
+.tphoto.has .tcat{grid-row:1;align-self:end;font-size:clamp(1.2rem,1.65vw,1.45rem);white-space:nowrap}
 .tphoto.has::after{background:linear-gradient(180deg,rgba(8,24,40,0) 0%,rgba(8,24,40,0) 45%,rgba(8,24,40,.88) 100%)}
 .tphoto.has .tcat,.tphoto.has .tdiv,.tphoto.has .tent{text-shadow:0 2px 10px rgba(0,0,0,.65)}
 .fhero.has{background-size:cover;background-position:center 30%}
@@ -938,7 +938,7 @@ const TEAMS = [
       { d: "2026-11-15", h: "14:30", j: "Journée 8", comp: "Départemental 3", dom: "CHATILLON DEVECEY", ext: "MONTS-VILLERS", s: "3-2" },
       { d: "2026-11-22", h: "14:30", j: "Journée 9", comp: "Départemental 3", dom: "LES QUATRE MONTS", ext: "CHATILLON DEVECEY", s: "2-1" },
       { d: "2026-11-29", h: "14:30", j: "Journée 10", comp: "Départemental 3", dom: "CHATILLON DEVECEY", ext: "MONTFAUCON MOR. GEN. 3", s: "" } ] },
-  { id: "seniors-f", nom: "Seniors féminines", cat: "Seniors F", groupe: "seniors", photo: "", entraineurs: [], division: "Seniors féminines à 8 · Automne", poule: "", entente: "Entente Perrousienne / Châtillon Devecey",
+  { id: "seniors-f", nom: "Seniors féminines", cat: "Seniors F", groupe: "seniors", photo: "img/equipes/seniors-f.webp", entraineurs: [], division: "Seniors féminines à 8 · Automne", poule: "", entente: "Entente Perrousienne / Châtillon Devecey",
     fff: FFFC + "523813-a-s-perrousienne/equipe/2026_9085_SEF_4",
     classement: [["ENT. ASP FCCD",16,7,5,1,1,41,10,31],["FRANCHEVELLE",14,6,4,2,0,52,10,42],["FCVFM",13,7,4,1,2,34,9,25],["R.C. SAONOIS",6,7,2,0,5,7,58,-51],["ROUGEMONT CONCORDE",0,7,0,0,7,5,52,-47]],
     matchs: [
