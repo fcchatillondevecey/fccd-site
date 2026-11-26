@@ -579,6 +579,23 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
   .crest.sm,.chip .crest,.rrow .crest{width:34px;height:34px;padding:3px}
   .mline .score{height:48px}.mcard.up .mline .score{height:56px}
 }
+
+/* ===== BOUTIQUE DU CLUB ===== */
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.item{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s}
+.item:hover{transform:translateY(-4px)}
+.item .ph{aspect-ratio:1/1;background:linear-gradient(135deg,rgba(48,144,180,.55),rgba(180,24,24,.55));display:grid;place-items:center;overflow:hidden}
+.item .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.item .ph .noph{color:rgba(255,255,255,.85);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+.item .ib{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.item h3{font-size:1.25rem;line-height:1.15;text-transform:uppercase}
+.item .desc{color:var(--muted);font-size:.9rem}
+.item .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:auto;padding-top:6px}
+.item .prix{font-family:var(--num);font-weight:800;font-size:1.5rem}
+.item .tailles{color:var(--muted);font-size:.8rem;text-align:right}
+.item .btn{margin-top:10px;padding:12px 20px;font-size:.9rem;align-self:stretch}
+.shop-empty{grid-column:1/-1;padding:34px;border:1px dashed rgba(255,255,255,.3);border-radius:14px;text-align:center;color:var(--muted)}
+.shop-note{margin-top:22px;color:var(--muted);font-size:.88rem}
 </style>
 </head>
 <body>
@@ -594,6 +611,7 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
         <li><a href="#actus">Actualités</a></li>
         <li><a href="#matchs">Matchs</a></li>
         <li><a href="#equipes">Équipes</a></li>
+        <li><a href="#boutique">Boutique</a></li>
         <li><a href="#partenaires">Partenaires</a></li>
         <li><a href="#vide-greniers">Vide-greniers</a></li>
         <li><a href="#rejoindre" class="cta">Nous rejoindre</a></li>
@@ -658,6 +676,15 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
       <div class="filters reveal" id="filters" role="group" aria-label="Filtrer les équipes"></div>
       <div class="tgrid reveal" id="teams"></div>
       <p class="releve" id="releve"></p>
+    </div>
+  </section>
+
+  <!-- BOUTIQUE -->
+  <section id="boutique">
+    <div class="container">
+      <div class="head reveal"><div><span class="eyebrow">Aux couleurs du club</span><h2>Boutique Club</h2></div><p>Affichez vos couleurs : les articles officiels du FC Châtillon Devecey.</p></div>
+      <div class="shop reveal" id="shop"></div>
+      <p class="shop-note reveal" id="shopnote" hidden></p>
     </div>
   </section>
 
@@ -755,7 +782,7 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
     <div class="fgrid">
       <div><a href="#accueil" class="brand"><div class="logo" data-logo></div><span>FC Châtillon Devecey</span></a><p>Ensemble, faisons grandir le football.</p></div>
       <div><h4>Navigation</h4><ul>
-        <li><a href="#actus">Actualités</a></li><li><a href="#matchs">Matchs</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#actus">Actualités</a></li><li><a href="#matchs">Matchs</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#boutique">Boutique</a></li><li><a href="#partenaires">Partenaires</a></li>
         <li><a href="#vide-greniers">Vide-greniers</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
       <div><h4>Contact</h4><ul id="fcontact"></ul></div>
     </div>
@@ -843,6 +870,9 @@ const ACTUS = [
 ];
 
 // Partenaires : { nom, logo (URL), site (URL) }. Liste vide = emplacements « votre logo ici ».
+// Boutique du club : un article = { nom, prix (ex. "35 €"), tailles (ex. "S · M · L · XL"), desc, photo (image), lien (lien de paiement en ligne) }
+const BOUTIQUE = [];
+const BOUTIQUE_NOTE = "";   // ex. « Retrait des commandes au stade, les samedis aux entraînements. »
 const PARTENAIRES = [];
 
 /* ===== ÉQUIPES : données officielles FFF relevées le 26/11/2026 (source : epreuves.fff.fr) =====
@@ -1045,6 +1075,18 @@ $('stats').innerHTML = CHIFFRES.map(c => {
 $('f-cat').innerHTML = TEAMS.map(t => `<option>${esc(t.nom)}</option>`).join('') + '<option>Je ne sais pas encore</option>';
 
 // Partenaires
+// Boutique
+$('shop').innerHTML = BOUTIQUE.length
+  ? BOUTIQUE.map(a => {
+      const ph = a.photo ? `<img src="${esc(a.photo)}" alt="${esc(a.nom)}" loading="lazy">` : `<span class="noph">Photo à venir</span>`;
+      const btn = a.lien
+        ? `<a class="btn btn-red" href="${esc(a.lien)}" target="_blank" rel="noopener">Commander</a>`
+        : (CONFIG.email ? `<a class="btn btn-line" href="mailto:${esc(CONFIG.email)}?subject=${encodeURIComponent('Boutique — ' + a.nom)}">Demander cet article</a>` : '');
+      return `<article class="item"><div class="ph">${ph}</div><div class="ib"><h3>${esc(a.nom)}</h3>${a.desc ? `<p class="desc">${esc(a.desc)}</p>` : ''}<div class="row"><span class="prix">${esc(a.prix || '')}</span>${a.tailles ? `<span class="tailles">${esc(a.tailles)}</span>` : ''}</div>${btn}</div></article>`;
+    }).join('')
+  : '<div class="shop-empty">La boutique du club ouvre bientôt. Les articles aux couleurs du FCCD seront présentés ici.</div>';
+if (BOUTIQUE_NOTE) { $('shopnote').textContent = BOUTIQUE_NOTE; $('shopnote').hidden = false; }
+
 $('partners').innerHTML = PARTENAIRES.length
   ? PARTENAIRES.map(p => { const inner = p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.nom)}">` : esc(p.nom); return p.site ? `<a class="partner" href="${esc(p.site)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="partner">${inner}</div>`; }).join('')
   : Array.from({ length: 4 }, () => '<div class="partner slot">Votre logo ici</div>').join('');
