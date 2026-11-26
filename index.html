@@ -630,6 +630,9 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
 .fhero.has{background-size:cover;background-position:center 30%}
 .stats-note{margin:18px 2px 0;color:var(--muted);font-size:.95rem}
 .stats-note:empty{display:none}
+dialog{max-height:86vh;overflow-y:auto}
+dialog h4{font-size:1rem;margin:16px 0 6px;letter-spacing:.02em}
+dialog p a{color:var(--blue);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -830,13 +833,24 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
 
 <div id="fiche" class="fiche" role="dialog" aria-modal="true" aria-label="Fiche de l'équipe" hidden><div class="fiche-in" id="fiche-in"></div></div>
 
-<dialog id="d-legal"><span class="tag">Texte à compléter par le club</span><h3>Mentions légales</h3>
-  <p>Éditeur du site : FC Châtillon Devecey — [adresse du siège, numéro d'association, responsable de publication : à renseigner].</p>
-  <p>Hébergement : [nom et adresse de l'hébergeur : à renseigner].</p>
+<dialog id="d-legal"><h3>Mentions légales</h3>
+  <h4>Éditeur du site</h4>
+  <p>Football Club de Châtillon Devecey<br>Stade Route de Bonnay<br>25870 Devecey<br>Contact : <a href="mailto:communication@fc-chatillondevecey.fr">communication@fc-chatillondevecey.fr</a></p>
+  <h4>Conception</h4>
+  <p>Interne au club.</p>
+  <h4>Hébergement</h4>
+  <p>Le site est présenté dans Google Sites (Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, États-Unis ; en France : Google Paris, 8 rue de Londres, 75009 Paris). Les pages et les images sont hébergées par GitHub Pages (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis).</p>
+  <h4>Données personnelles</h4>
+  <p>Les utilisateurs du site fc-chatillondevecey.fr disposent d'un droit d'accès, de modification, de rectification et de suppression des données qui les concernent, en application de la loi n° 78-17 du 6 janvier 1978 dite « Informatique et Libertés ». Ils peuvent exercer ce droit en écrivant à <a href="mailto:communication@fc-chatillondevecey.fr">communication@fc-chatillondevecey.fr</a>.</p>
+  <p>Les données personnelles des personnes qui contactent le club ou passent commande ne sont collectées, traitées, utilisées et stockées, sans accord exprès préalable, que dans la mesure où cela est nécessaire pour répondre à leur demande ou exécuter leur commande. Elles ne sont pas mises à la disposition du public ou de tiers, à l'exception de nos prestataires techniques lorsqu'ils interviennent sur nos outils, qui sont tenus aux mêmes obligations de confidentialité et de sécurité que le club.</p>
+  <h4>Droits d'auteur</h4>
+  <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques. La reproduction de tout ou partie de ce site sur un support électronique quel qu'il soit est formellement interdite, sauf autorisation expresse du directeur de la publication.</p>
+  <p>La reproduction des textes de ce site sur un support papier est autorisée, notamment dans un cadre pédagogique, sous réserve du respect de trois conditions : gratuité de la diffusion ; respect de l'intégrité des documents reproduits, sans modification ni altération d'aucune sorte ; citation claire et lisible de la source, par exemple : « Ce document provient du site Internet fc-chatillondevecey.fr. Les droits de reproduction sont réservés et strictement limités. » L'adresse fc-chatillondevecey.fr doit impérativement figurer dans la référence. Pour d'autres utilisations, veuillez nous consulter.</p>
+  <p>Les marques citées sur ce site sont déposées par les sociétés qui en sont propriétaires.</p>
   <button class="btn btn-line" onclick="this.closest('dialog').close()">Fermer</button></dialog>
-<dialog id="d-priv"><span class="tag">Texte à compléter par le club</span><h3>Confidentialité</h3>
-  <p>Ce site n'enregistre aucune donnée personnelle : le formulaire prépare simplement un e-mail dans votre messagerie. Les informations que vous envoyez ainsi ne sont utilisées que pour répondre à votre demande.</p>
-  <p>Responsable des données : [à renseigner]. Pour exercer vos droits (accès, rectification, suppression), contactez le club.</p>
+<dialog id="d-priv"><h3>Confidentialité</h3>
+  <p>Cette page n'enregistre aucune donnée personnelle et n'utilise ni cookie ni outil de mesure d'audience : le formulaire « Nous rejoindre » prépare simplement un e-mail dans votre messagerie, adressé au club. Les informations que vous envoyez ainsi ne sont utilisées que pour répondre à votre demande.</p>
+  <p>Responsable des données : Football Club de Châtillon Devecey, Stade Route de Bonnay, 25870 Devecey. Pour exercer vos droits d'accès, de rectification et de suppression, écrivez à <a href="mailto:communication@fc-chatillondevecey.fr">communication@fc-chatillondevecey.fr</a>.</p>
   <button class="btn btn-line" onclick="this.closest('dialog').close()">Fermer</button></dialog>
 
 <script>
