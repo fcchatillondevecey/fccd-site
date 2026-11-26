@@ -612,6 +612,14 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
 .tphoto .tent{grid-row:3;align-self:start;width:100%;font-size:.78rem;line-height:1.25}
 .tbody{padding:20px;flex:1;display:flex;align-items:center;justify-content:center}
 @media (max-width:560px){.tphoto,.tphoto.has{height:200px;min-height:200px}}
+
+/* ===== BOUTIQUE : en attente (photo détourée) ===== */
+.shop-soon{grid-column:1/-1;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:10px 0}
+.soon-txt h3{font-size:clamp(2rem,4vw,3.2rem);text-transform:uppercase;line-height:1.05;margin:14px 0 14px}
+.soon-txt p{color:var(--muted);max-width:460px;font-size:1.05rem}
+.soon-tag{display:inline-block;padding:7px 16px;border:1px solid rgba(255,255,255,.5);border-radius:999px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+.soon-img{width:100%;max-width:440px;height:auto;justify-self:center;filter:drop-shadow(0 22px 28px rgba(0,0,0,.35))}
+@media (max-width:760px){.shop-soon{grid-template-columns:1fr;gap:22px;text-align:center}.soon-txt p{margin:0 auto}.soon-img{max-width:300px}}
 </style>
 </head>
 <body>
@@ -1114,7 +1122,7 @@ $('shop').innerHTML = BOUTIQUE.length
         : (CONFIG.email ? `<a class="btn btn-line" href="mailto:${esc(CONFIG.email)}?subject=${encodeURIComponent('Boutique — ' + a.nom)}">Demander cet article</a>` : '');
       return `<article class="item"><div class="ph">${ph}</div><div class="ib"><h3>${esc(a.nom)}</h3>${a.desc ? `<p class="desc">${esc(a.desc)}</p>` : ''}<div class="row"><span class="prix">${esc(a.prix || '')}</span>${a.tailles ? `<span class="tailles">${esc(a.tailles)}</span>` : ''}</div>${btn}</div></article>`;
     }).join('')
-  : '<div class="shop-empty">La boutique du club ouvre bientôt. Les articles aux couleurs du FCCD seront présentés ici.</div>';
+  : `<div class="shop-soon"><div class="soon-txt"><span class="soon-tag">En attente</span><h3>Bientôt disponible</h3><p>La boutique du club ouvre bientôt. Les articles aux couleurs du FCCD seront présentés ici.</p></div><img class="soon-img" src="img/boutique/tenue.webp" alt="Tenue aux couleurs du FC Châtillon Devecey : maillot bleu et pantalon noir" loading="lazy"></div>`;
 if (BOUTIQUE_NOTE) { $('shopnote').textContent = BOUTIQUE_NOTE; $('shopnote').hidden = false; }
 
 $('partners').innerHTML = PARTENAIRES.length
