@@ -596,6 +596,12 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
 .item .btn{margin-top:10px;padding:12px 20px;font-size:.9rem;align-self:stretch}
 .shop-empty{grid-column:1/-1;padding:34px;border:1px dashed rgba(255,255,255,.3);border-radius:14px;text-align:center;color:var(--muted)}
 .shop-note{margin-top:22px;color:var(--muted);font-size:.88rem}
+
+/* ===== PARTENAIRES : un visuel par sponsor ===== */
+.partners:has(.pic){grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.partner.pic{height:auto;aspect-ratio:2/1;padding:0;overflow:hidden;border-radius:14px;background:#fff;transition:transform .25s}
+.partner.pic:hover{transform:translateY(-4px)}
+.partner.pic img{width:100%;height:100%;max-height:none;object-fit:cover;display:block}
 </style>
 </head>
 <body>
@@ -873,7 +879,22 @@ const ACTUS = [
 // Boutique du club : un article = { nom, prix (ex. "35 €"), tailles (ex. "S · M · L · XL"), desc, photo (image), lien (lien de paiement en ligne) }
 const BOUTIQUE = [];
 const BOUTIQUE_NOTE = "";   // ex. « Retrait des commandes au stade, les samedis aux entraînements. »
-const PARTENAIRES = [];
+// Partenaires : un visuel par sponsor (dossier img/partenaires). Ajouter : { nom, logo (ou photo), site (facultatif) }
+const PARTENAIRES = [
+  { nom: "Éleveur-Abatteur Gautherot", logo: "img/partenaires/gautherot.webp", visuel: true },
+  { nom: "SN Triboclean", logo: "img/partenaires/sn-triboclean.webp", visuel: true },
+  { nom: "Tiryaki Bedran", logo: "img/partenaires/tiryaki.webp", visuel: true },
+  { nom: "Super U Devecey", logo: "img/partenaires/super-u.webp", visuel: true },
+  { nom: "Plus que pro", logo: "img/partenaires/plus-que-pro.webp", visuel: true },
+  { nom: "MC", logo: "img/partenaires/mc.webp", visuel: true },
+  { nom: "Flash Elec Concept", logo: "img/partenaires/flash-elec.webp", visuel: true },
+  { nom: "La Dame Blanche", logo: "img/partenaires/la-dame-blanche.webp", visuel: true },
+  { nom: "Garage Girardot", logo: "img/partenaires/garage-girardot.webp", visuel: true },
+  { nom: "JPL solution globale", logo: "img/partenaires/jpl.webp", visuel: true },
+  { nom: "Maison Fivel", logo: "img/partenaires/maison-fivel.webp", visuel: true },
+  { nom: "Gedibois GBMC Franois", logo: "img/partenaires/gedibois.webp", visuel: true },
+  { nom: "Boulangerie Au Grain de Blé", logo: "img/partenaires/au-grain-de-ble.webp", visuel: true },
+];
 
 /* ===== ÉQUIPES : données officielles FFF relevées le 26/11/2026 (source : epreuves.fff.fr) =====
    classement : [équipe, points, joués, gagnés, nuls, perdus (forfaits inclus), buts pour, buts contre, différence]
@@ -1088,7 +1109,7 @@ $('shop').innerHTML = BOUTIQUE.length
 if (BOUTIQUE_NOTE) { $('shopnote').textContent = BOUTIQUE_NOTE; $('shopnote').hidden = false; }
 
 $('partners').innerHTML = PARTENAIRES.length
-  ? PARTENAIRES.map(p => { const inner = p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.nom)}">` : esc(p.nom); return p.site ? `<a class="partner" href="${esc(p.site)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="partner">${inner}</div>`; }).join('')
+  ? PARTENAIRES.map(p => { const inner = p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.nom)}" loading="lazy">` : esc(p.nom); const cls = p.visuel ? 'partner pic' : 'partner'; return p.site ? `<a class="${cls}" href="${esc(p.site)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="${cls}">${inner}</div>`; }).join('')
   : Array.from({ length: 4 }, () => '<div class="partner slot">Votre logo ici</div>').join('');
 
 // Contact (pied de page)
