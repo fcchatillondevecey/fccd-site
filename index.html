@@ -628,6 +628,8 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
 .tphoto.has::after{background:linear-gradient(180deg,rgba(8,24,40,0) 0%,rgba(8,24,40,0) 45%,rgba(8,24,40,.88) 100%)}
 .tphoto.has .tcat,.tphoto.has .tdiv,.tphoto.has .tent{text-shadow:0 2px 10px rgba(0,0,0,.65)}
 .fhero.has{background-size:cover;background-position:center 30%}
+.stats-note{margin:18px 2px 0;color:var(--muted);font-size:.95rem}
+.stats-note:empty{display:none}
 </style>
 </head>
 <body>
@@ -698,6 +700,7 @@ dialog::backdrop{background:rgba(4,20,32,.75)}
     <div class="container">
       <div class="head reveal"><div><span class="eyebrow">Le club</span><h2>Le FCCD en quelques chiffres</h2></div></div>
       <div class="stats reveal" id="stats"></div>
+      <p class="stats-note reveal" id="stats-note"></p>
     </div>
   </section>
 
@@ -861,11 +864,12 @@ const VIDE_GRENIER = {
 
 // Chiffres du club : renseigner les vraies valeurs (nombre ou texte). null = « à renseigner ».
 const CHIFFRES = [
-  { label: "Licenciés",     valeur: null },
-  { label: "Équipes",       valeur: null },
-  { label: "Éducateurs",    valeur: null },
-  { label: "Année de création", valeur: null }
+  { label: "Licenciés",              valeur: "130+" },
+  { label: "Équipes",                valeur: 10 },
+  { label: "Éducateurs",             valeur: 15 },
+  { label: "Année de la fusion",     valeur: 2007 }
 ];
+const CHIFFRES_NOTE = "Le FC Châtillon Devecey est né en 2007 de la fusion de l'US Devecey et de l'USC Châtillon Devecey.";
 
 
 // Matchs : relevés sur epreuves.fff.fr (club, U15 Émagny, Seniors F Perrousienne).
@@ -1116,6 +1120,8 @@ $('stats').innerHTML = CHIFFRES.map(c => {
   const ok = c.valeur !== null && c.valeur !== "";
   return `<div class="stat"><div class="n ${ok ? '' : 'todo'}">${ok ? esc(c.valeur) : '—'}</div><div class="l">${esc(c.label)}${ok ? '' : '<span class="todo-l">À renseigner</span>'}</div></div>`;
 }).join('');
+
+$('stats-note').textContent = CHIFFRES_NOTE;
 
 // Équipes + select du formulaire
 $('f-cat').innerHTML = TEAMS.map(t => `<option>${esc(t.nom)}</option>`).join('') + '<option>Je ne sais pas encore</option>';
