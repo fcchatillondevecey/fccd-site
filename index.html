@@ -960,7 +960,7 @@ const TEAMS = [
       { d: "2026-11-07", h: "16:45", j: "Journée 5", comp: "U18 D2 Automne", dom: "E. CHATIL DEV EMAGNY 2", ext: "DANNEMARIE", s: "2-1" },
       { d: "2026-11-14", h: "14:30", j: "Journée 6", comp: "U18 D2 Automne", dom: "UNION FC", ext: "E. CHATIL DEV EMAGNY 2", s: "6-0" },
       { d: "2026-11-21", h: "16:45", j: "Journée 7", comp: "U18 D2 Automne", dom: "E. CHATIL DEV EMAGNY 2", ext: "ROCHE NOVILLARS 2", s: "3-2" } ] },
-  { id: "u15", nom: "U15", cat: "U15", groupe: "jeunes", photo: "", entraineurs: [], division: "U15 Promotion · Phase 2", poule: "", entente: "Entente Émagny / Châtillon Devecey",
+  { id: "u15", nom: "U15", cat: "U15", groupe: "jeunes", photo: "img/equipes/u15.webp", photoPos: "center top", entraineurs: [], division: "U15 Promotion · Phase 2", poule: "", entente: "Entente Émagny / Châtillon Devecey",
     fff: FFFC + "548969-f-c-emagny-pin/equipe/2026_25882_U15_2",
     // La FFF n'affiche pas le nom des autres équipes de cette poule : seule notre ligne est reprise (3e sur 4, recoupée avec nos résultats).
     classement: [["E. EMAGNY CHATILLON",4,3,1,1,1,7,7,0]], pos: 3, total: 4, partiel: true,
@@ -1176,7 +1176,7 @@ function renderEquipes() {
   $('filters').innerHTML = fl.map(([k, l]) => `<button class="fbtn" type="button" data-f="${k}" aria-pressed="${k === filtre}">${esc(l)}</button>`).join('');
   $('filters').querySelectorAll('.fbtn').forEach(b => b.addEventListener('click', () => { filtre = b.dataset.f; renderEquipes(); }));
   $('teams').innerHTML = TEAMS.filter(t => filtre === 'tous' || t.groupe === filtre).map(t =>
-    `<article class="tcard"><div class="tphoto ${t.photo ? 'has' : ''}" ${t.photo ? `style="background-image:url('${esc(t.photo)}')"` : ''}><h3 class="tcat">${esc(t.nom)}</h3><p class="tdiv">${esc(t.division)}${t.poule ? ' · ' + esc(t.poule) : ''}</p>${t.entente ? `<p class="tent">${esc(t.entente)}</p>` : ''}</div>
+    `<article class="tcard"><div class="tphoto ${t.photo ? 'has' : ''}" ${t.photo ? `style="background-image:url('${esc(t.photo)}')${t.photoPos ? ';background-position:' + t.photoPos : ''}"` : ''}><h3 class="tcat">${esc(t.nom)}</h3><p class="tdiv">${esc(t.division)}${t.poule ? ' · ' + esc(t.poule) : ''}</p>${t.entente ? `<p class="tent">${esc(t.entente)}</p>` : ''}</div>
       <div class="tbody"><a class="btn btn-line" href="#equipe-${esc(t.id)}">Découvrir l'équipe</a></div></article>`).join('');
   $('releve').innerHTML = `Données officielles de la FFF relevées le ${esc(RELEVE)} (saison ${esc(SAISON)}) · <a href="https://epreuves.fff.fr/competition/club/553172-fc-chatillon-devecey/club" target="_blank" rel="noopener">Voir sur le site de la FFF</a>`;
 }
@@ -1223,7 +1223,7 @@ function ficheHTML(t) {
     t._passes = passes;
   }
   return `<div class="fiche-top"><div class="container"><a class="back" href="#equipes">← Toutes les équipes</a><a href="#accueil" class="brand"><div class="logo" data-logo></div><span>FC Châtillon Devecey</span></a></div></div>
-    <div class="fhero ${t.photo ? 'has' : ''}" ${t.photo ? `style="background-image:url('${esc(t.photo)}')"` : ''}><div class="container"><span class="eyebrow">${esc(GROUPES[t.groupe])}</span><h2>${esc(t.nom)}</h2><p class="sub2">${esc(t.division)}${t.entente ? ' · ' + esc(t.entente) : ''}</p>
+    <div class="fhero ${t.photo ? 'has' : ''}" ${t.photo ? `style="background-image:url('${esc(t.photo)}')${t.photoPos ? ';background-position:' + t.photoPos : ''}"` : ''}><div class="container"><span class="eyebrow">${esc(GROUPES[t.groupe])}</span><h2>${esc(t.nom)}</h2><p class="sub2">${esc(t.division)}${t.entente ? ' · ' + esc(t.entente) : ''}</p>
       <div class="finfo">${info.filter(x => x[1]).map(([l, v]) => `<div><small>${l}</small>${v ? `<strong>${esc(v)}</strong>` : '<strong class="todo">À renseigner</strong>'}</div>`).join('')}</div></div></div>
     <div class="container">${body}<p class="fnote">Données officielles de la FFF relevées le ${esc(RELEVE)}. Source : <a href="${esc(t.fff)}" target="_blank" rel="noopener">epreuves.fff.fr</a>. Aucun résultat n'est saisi à la main : un score vide signifie qu'il n'est pas publié par la FFF.</p></div>`;
 }
