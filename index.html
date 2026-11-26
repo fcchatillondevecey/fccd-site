@@ -650,7 +650,7 @@ dialog p a{color:var(--blue);text-decoration:underline}
         <li><a href="#equipes">Équipes</a></li>
         <li><a href="#boutique">Boutique</a></li>
         <li><a href="#partenaires">Partenaires</a></li>
-        <li><a href="#vide-greniers">Vide-greniers</a></li>
+        <li><a href="#evenements">Événements</a></li>
         <li><a href="#rejoindre" class="cta">Nous rejoindre</a></li>
       </ul>
     </nav>
@@ -735,10 +735,62 @@ dialog p a{color:var(--blue);text-decoration:underline}
     </div>
   </section>
 
-  <!-- VIDE-GRENIERS -->
+  <!-- RECRUTEMENT -->
+  <section id="rejoindre">
+    <div class="container">
+      <div class="join reveal">
+        <div class="left">
+          <span class="eyebrow">Recrutement</span>
+          <h2>Rejoignez le FCCD</h2>
+          <p>Joueur ou joueuse, parent, bénévole ou futur partenaire : écrivez-nous, nous vous répondrons avec plaisir.</p>
+          <ul>
+            <li>Séance d'essai possible</li>
+            <li>Toutes les catégories, des plus jeunes aux seniors</li>
+            <li>Un encadrement et un esprit de famille</li>
+          </ul>
+        </div>
+        <form id="form" novalidate>
+          <div class="row2">
+            <label>Nom<input name="nom" required autocomplete="name"></label>
+            <label>E-mail<input name="email" type="email" required autocomplete="email"></label>
+          </div>
+          <div class="row2">
+            <label>Votre demande
+              <select name="type"><option>Inscription</option><option>Demande d'essai</option><option>Partenariat</option><option>Contact</option></select></label>
+            <label>Catégorie<select name="cat" id="f-cat"></select></label>
+          </div>
+          <label>Message<textarea name="msg"></textarea></label>
+          <button class="btn btn-red" type="submit">Envoyer ma demande</button>
+          <p id="fmsg" role="status"></p>
+          <p class="note">Aucune donnée n'est enregistrée sur ce site : votre demande s'ouvre dans votre messagerie, puis c'est vous qui l'envoyez. Pour un mineur, merci que la demande soit faite par son représentant légal.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div><a href="#accueil" class="brand"><div class="logo" data-logo></div><span>FC Châtillon Devecey</span></a><p>Ensemble, faisons grandir le football.</p></div>
+      <div><h4>Navigation</h4><ul>
+        <li><a href="#actus">Actualités</a></li><li><a href="#matchs">Matchs</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#boutique">Boutique</a></li><li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#evenements">Événements</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
+      <div><h4>Contact</h4><ul id="fcontact"></ul></div>
+    </div>
+    <div class="copy">
+      <span>© <span id="year"></span> FC Châtillon Devecey. Tous droits réservés.</span>
+      <span><button class="linkbtn" data-dialog="d-legal">Mentions légales</button> · <button class="linkbtn" data-dialog="d-priv">Politique de confidentialité</button></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ÉVÉNEMENTS (page à part, ouverte depuis l'onglet « Événements » du menu ; pas sur l'accueil) -->
+<div id="evenements" class="fiche" role="dialog" aria-modal="true" aria-label="Événements du club" hidden>
+  <div class="fiche-top"><div class="container"><a class="back" href="#accueil">← Retour à l'accueil</a><a href="#accueil" class="brand"><div class="logo" data-logo></div><span>FC Châtillon Devecey</span></a></div></div>
   <section id="vide-greniers">
     <div class="container">
-      <div class="head reveal"><div><span class="eyebrow">Événement du club</span><h2>Vide-greniers 2026</h2></div><p id="vg-edition"></p></div>
+      <div class="head reveal"><div><span class="eyebrow">Événements du club</span><h2>Vide-greniers 2026</h2></div><p id="vg-edition"></p></div>
 
       <div class="vg-keys reveal">
         <div class="vg-key"><span class="dot g"></span><div><b>Emplacements verts</b><p>Disponibles à la réservation : cliquez dessus pour connaître leur largeur précise, leur coût et les réserver en ligne.</p></div></div>
@@ -780,56 +832,7 @@ dialog p a{color:var(--blue);text-decoration:underline}
       </div>
     </div>
   </section>
-
-  <!-- RECRUTEMENT -->
-  <section id="rejoindre">
-    <div class="container">
-      <div class="join reveal">
-        <div class="left">
-          <span class="eyebrow">Recrutement</span>
-          <h2>Rejoignez le FCCD</h2>
-          <p>Joueur ou joueuse, parent, bénévole ou futur partenaire : écrivez-nous, nous vous répondrons avec plaisir.</p>
-          <ul>
-            <li>Séance d'essai possible</li>
-            <li>Toutes les catégories, des plus jeunes aux seniors</li>
-            <li>Un encadrement et un esprit de famille</li>
-          </ul>
-        </div>
-        <form id="form" novalidate>
-          <div class="row2">
-            <label>Nom<input name="nom" required autocomplete="name"></label>
-            <label>E-mail<input name="email" type="email" required autocomplete="email"></label>
-          </div>
-          <div class="row2">
-            <label>Votre demande
-              <select name="type"><option>Inscription</option><option>Demande d'essai</option><option>Partenariat</option><option>Contact</option></select></label>
-            <label>Catégorie<select name="cat" id="f-cat"></select></label>
-          </div>
-          <label>Message<textarea name="msg"></textarea></label>
-          <button class="btn btn-red" type="submit">Envoyer ma demande</button>
-          <p id="fmsg" role="status"></p>
-          <p class="note">Aucune donnée n'est enregistrée sur ce site : votre demande s'ouvre dans votre messagerie, puis c'est vous qui l'envoyez. Pour un mineur, merci que la demande soit faite par son représentant légal.</p>
-        </form>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="fgrid">
-      <div><a href="#accueil" class="brand"><div class="logo" data-logo></div><span>FC Châtillon Devecey</span></a><p>Ensemble, faisons grandir le football.</p></div>
-      <div><h4>Navigation</h4><ul>
-        <li><a href="#actus">Actualités</a></li><li><a href="#matchs">Matchs</a></li><li><a href="#equipes">Équipes</a></li><li><a href="#boutique">Boutique</a></li><li><a href="#partenaires">Partenaires</a></li>
-        <li><a href="#vide-greniers">Vide-greniers</a></li><li><a href="#rejoindre">Nous rejoindre</a></li></ul></div>
-      <div><h4>Contact</h4><ul id="fcontact"></ul></div>
-    </div>
-    <div class="copy">
-      <span>© <span id="year"></span> FC Châtillon Devecey. Tous droits réservés.</span>
-      <span><button class="linkbtn" data-dialog="d-legal">Mentions légales</button> · <button class="linkbtn" data-dialog="d-priv">Politique de confidentialité</button></span>
-    </div>
-  </div>
-</footer>
+</div>
 
 <div id="fiche" class="fiche" role="dialog" aria-modal="true" aria-label="Fiche de l'équipe" hidden><div class="fiche-in" id="fiche-in"></div></div>
 
@@ -1262,7 +1265,15 @@ function teamFromHash(h) {
   const m = (h || '').match(/^#equipe-(.+)$/);
   return m && TEAMS.find(x => x.id === decodeURIComponent(m[1]));
 }
-function routeFiche() { showFiche(teamFromHash(location.hash)); }
+function showEvents(open) {
+  const e = $('evenements');
+  if (!open) { e.hidden = true; if ($('fiche').hidden) document.body.style.overflow = ''; return; }
+  if (!$('fiche').hidden) showFiche(null);
+  e.querySelectorAll('.reveal').forEach(x => x.classList.add('in'));
+  e.hidden = false; e.scrollTop = 0; document.body.style.overflow = 'hidden';
+  document.title = 'Événements — FC Châtillon Devecey';
+}
+function routeFiche() { if (location.hash === '#evenements') { showEvents(true); return; } showEvents(false); showFiche(teamFromHash(location.hash)); }
 function goTo(id) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1275,14 +1286,15 @@ document.addEventListener('click', e => {
   const h = a.getAttribute('href');
   if (!h || h === '#') return;
   e.preventDefault();
+  if (h === '#evenements') { showEvents(true); return; }
   const t = teamFromHash(h);
-  if (t) { showFiche(t); return; }
-  const wasOpen = !$('fiche').hidden;
-  if (wasOpen) showFiche(null);
+  if (t) { showEvents(false); showFiche(t); return; }
+  const wasOpen = !$('fiche').hidden || !$('evenements').hidden;
+  if (wasOpen) { showFiche(null); showEvents(false); document.title = 'FC Châtillon Devecey — Site officiel du club'; }
   setTimeout(() => goTo(h.slice(1)), wasOpen ? 60 : 0);
 });
 addEventListener('hashchange', routeFiche);
-addEventListener('keydown', e => { if (e.key === 'Escape' && !$('fiche').hidden) { showFiche(null); goTo('equipes'); } });
+addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('evenements').hidden) { showEvents(false); document.title = 'FC Châtillon Devecey — Site officiel du club'; } else if (!$('fiche').hidden) { showFiche(null); goTo('equipes'); } } });
 
 // Menu mobile + en-tête dynamique + apparitions
 const burger = document.querySelector('.burger'), menu = $('menu');
